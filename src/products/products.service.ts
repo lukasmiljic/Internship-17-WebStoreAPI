@@ -29,4 +29,10 @@ export class ProductsService {
   remove(id: number) {
     return this.prisma.product.delete({ where: { id } });
   }
+
+  search(searchTerm: string) {
+    return this.prisma.product.findMany({
+      where: { title: { contains: searchTerm, mode: 'insensitive' } },
+    });
+  }
 }
