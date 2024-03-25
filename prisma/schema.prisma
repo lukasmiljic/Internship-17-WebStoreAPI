@@ -9,11 +9,11 @@ datasource db {
 
 model Product{
   id Int @id @default(autoincrement())
-  title String
-  price Int
+  title String @unique
+  price Decimal
   description String?
   category String
-  image String
+  image String?
   // createdAt DateTime @default(now())
   // updatedAt DateTime @updatedAt
 }
