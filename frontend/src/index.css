@@ -1,0 +1,23 @@
+@import url("./assets/fonts/satoshi.css");
+
+* {
+  font-family: "Satoshi-Regular", serif;
+  box-sizing: border-box;
+}
+
+body {
+  color: #fafafa;
+  margin: 0px;
+  background: rgb(0, 0, 0);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: radial-gradient(
+    circle at top,
+    rgb(51 43 0) 0%,
+    rgb(16, 16, 16) 55%
+  );
+}
+
+::selection {
+  background: #ffd90073;
+}

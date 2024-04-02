@@ -1,0 +1,13 @@
+.productList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  column-gap: 15px;
+  row-gap: 15px;
+}
+
+.title {
+  font-size: 4rem;
+  font-family: "Satoshi-Bold";
+  color: white;
+  margin-bottom: 0px;
+}

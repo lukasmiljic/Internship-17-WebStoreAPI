@@ -1,0 +1,23 @@
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  animation: 1s fadeInUp;
+}
+
+.logo {
+  font-size: 3rem;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(2%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
