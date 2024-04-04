@@ -8,12 +8,47 @@ datasource db {
 }
 
 model Product{
-  id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement()) @unique
   title String @unique
   price Decimal
   description String?
   category String
   image String?
-  // createdAt DateTime @default(now())
-  // updatedAt DateTime @updatedAt
+  cart Cart?
+  wishlist Wishlist?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  name String
+  admin Boolean @default(false)
+  cart Cart?
+  wishlist Wishlist?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Cart {
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [userId], references: [id])
+  userId Int @unique
+  product Product @relation(fields: [productId], references: [id])
+  productId Int @unique
+  quantity Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Wishlist {
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [userId], references: [id])
+  userId Int @unique
+  product Product @relation(fields: [productId], references: [id])
+  productId Int @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
