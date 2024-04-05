@@ -7,27 +7,33 @@ import {
   Param,
   Delete,
   Search,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ProductEntity } from './entities/product.entity';
+import { UserAuthGuard } from 'src/users/user-auth.guard';
+import { AdminAuthGuard } from 'src/users/admin-auth.guard';
 
 @Controller('products')
 @ApiTags('Products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
+  @UseGuards(AdminAuthGuard)
   @Post()
   @ApiCreatedResponse({ type: ProductEntity })
-  create(@Body() createProductDto: CreateProductDto) {
+  create(@Req() {user}, @Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }
 
+  @UseGuards(UserAuthGuard)
   @Get()
   @ApiOkResponse({ type: ProductEntity })
-  findAll() {
+  findAll(@Req() { user }) {
     return this.productsService.findAll();
   }
 

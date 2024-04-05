@@ -77,6 +77,12 @@ export class UsersService {
       throw new ForbiddenException('Invalid password');
     }
 
+    const payload = {
+      id: user.id,
+      email: user.email,
+      admin: user.admin,
+    }
+
     return { token: this.jwtService.sign({ sub: user.id }) };
   }
 
