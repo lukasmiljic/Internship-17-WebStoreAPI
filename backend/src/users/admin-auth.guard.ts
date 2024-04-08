@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AdminAuthGuard extends AuthGuard('jwt') {
-  async canActivate(
-    context: ExecutionContext) {
+  async canActivate(context: ExecutionContext) {
     const baseGuardResult = await super.canActivate(context);
     if (!baseGuardResult) {
       return false;
