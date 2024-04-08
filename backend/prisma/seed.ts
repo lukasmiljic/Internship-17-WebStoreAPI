@@ -123,7 +123,46 @@ async function main() {
     },
   });
 
-  console.log(product1, product2);
+  const user1 = await prisma.user.upsert({
+    where: { email: 'user1@example.com' },
+    update: {},
+    create: {
+      email: 'user1@example.com',
+      password: 'password123',
+      name: 'Ante Antic',
+      admin: true,
+    },
+  });
+
+  const user2 = await prisma.user.upsert({
+    where: { email: 'user2@example.com' },
+    update: {},
+    create: {
+      email: 'user2@example.com',
+      password: 'password123',
+      name: 'Bante Bantic',
+    },
+  });
+
+  const user3 = await prisma.user.upsert({
+    where: { email: 'user3@example.com' },
+    update: {},
+    create: {
+      email: 'user3@example.com',
+      password: 'password123',
+      name: 'Cante Cantic',
+    },
+  });
+
+  const user4 = await prisma.user.upsert({
+    where: { email: 'user4@example.com' },
+    update: {},
+    create: {
+      email: 'user4@example.com',
+      password: 'password123',
+      name: 'Dante Dantic',
+    },
+  });
 }
 
 main()
