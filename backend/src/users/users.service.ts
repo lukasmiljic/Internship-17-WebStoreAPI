@@ -17,13 +17,6 @@ export class UsersService {
   ) {}
 
   async register(email: string, password: string) {
-    if (!email) {
-      throw new BadRequestException('Missing email');
-    }
-    if (!password) {
-      throw new BadRequestException('Missing password');
-    }
-
     const existingUser = await this.prisma.user.findUnique({
       where: {
         email,
@@ -54,13 +47,6 @@ export class UsersService {
   }
 
   async login(email: string, password: string) {
-    if (!email) {
-      throw new BadRequestException('Missing email');
-    }
-    if (!password) {
-      throw new BadRequestException('Missing password');
-    }
-
     const user = await this.prisma.user.findUnique({
       where: {
         email,
@@ -81,7 +67,7 @@ export class UsersService {
       id: user.id,
       email: user.email,
       admin: user.admin,
-    }
+    };
 
     return { token: this.jwtService.sign({ sub: user.id }) };
   }

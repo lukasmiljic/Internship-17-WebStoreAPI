@@ -9,6 +9,7 @@ import {
   Search,
   UseGuards,
   Req,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -39,7 +40,7 @@ export class ProductsController {
 
   @Get(':id')
   @ApiOkResponse({ type: ProductEntity })
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: string) {
     return this.productsService.findOne(+id);
   }
 
